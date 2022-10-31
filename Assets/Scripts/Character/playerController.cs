@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using static Models;
-
 public class playerController : MonoBehaviour
 {
     private CharacterController characterController;
@@ -16,24 +14,19 @@ public class playerController : MonoBehaviour
     public Transform cameraHolder;
 
     [Header("Settings")]
-    public PlayerSettingsModel playerSettings;
-
     public LayerMask playerMask;
 
-    [Header("Gravity")]
-    public float gravity;
-
-    public float gravityMin;
-
-    private float playerGravity;
-
     [Header("Jump")]
-    public Vector3 jumpForce;
+    private float gravity = -9.81f;
 
-    private Vector3 jumpForceVelocity;
+    private float jumpHeight = 3f;
+
+    Vector3 velocity;
 
     [Header("Sprint")]
     private bool isSprinting;
+
+    private float speed = 6f;
 
     private float sprintSpeed = 12f;
 
@@ -61,7 +54,7 @@ public class playerController : MonoBehaviour
     private void Update()
     {
         CalculateMovement();
-        //CalculateJump();
+        CalculateJump();
     }
 
     private void CalculateMovement()
@@ -70,26 +63,35 @@ public class playerController : MonoBehaviour
         float inputY = inputMovement.y;
 
         Vector3 move = transform.right * inputX + transform.forward * inputY;
-        characterController
-            .Move(move * sprintSpeed * Time.deltaTime);
+
+        if (isSprinting)
+        {
+            characterController.Move(move * sprintSpeed * Time.deltaTime);
+        }
+        else
+        {
+            characterController.Move(move * speed * Time.deltaTime);
+        }
+
+        // Apply gravity
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
     }
 
     private void CalculateJump()
     {
-        jumpForce =
-            Vector3
-                .SmoothDamp(jumpForce,
-                Vector3.zero,
-                ref jumpForceVelocity,
-                playerSettings.JumpTime);
+        if (characterController.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
     }
 
     private void Jump()
     {
-        if (!characterController.isGrounded) return;
-
-        jumpForce = Vector3.up * playerSettings.JumpHeight;
-        playerGravity = 0;
+        if (characterController.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
     }
 
     private void ToggleSprint()

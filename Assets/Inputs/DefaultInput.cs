@@ -80,6 +80,15 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""176c9277-a914-4f63-bbee-c164af758a1c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,6 +212,17 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8bd97b0-47a3-4794-b16a-969c625c5ad1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -217,6 +237,7 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
         m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
         m_Character_Prone = m_Character.FindAction("Prone", throwIfNotFound: true);
         m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
+        m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -282,6 +303,7 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Crouch;
     private readonly InputAction m_Character_Prone;
     private readonly InputAction m_Character_Sprint;
+    private readonly InputAction m_Character_Shoot;
     public struct CharacterActions
     {
         private @DefaultInput m_Wrapper;
@@ -292,6 +314,7 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
         public InputAction @Prone => m_Wrapper.m_Character_Prone;
         public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
+        public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -319,6 +342,9 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
+                @Shoot.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -341,6 +367,9 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -353,5 +382,6 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnProne(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }
