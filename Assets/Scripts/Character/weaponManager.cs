@@ -8,7 +8,11 @@ public class weaponManager : MonoBehaviour
 
     public GameObject playerCam;
 
-    public float range = 100f;
+    public float range = 200f;
+
+    public float damage = 20f;
+
+    public Animator playerAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +26,20 @@ public class weaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerAnimator.GetBool("isShooting"))
+        {
+
+            playerAnimator.SetBool("isShooting", false);
+        }
+        //Debug.Log(playerAnimator.GetBool("isShooting"));
     }
 
     private void Shoot()
     {
         RaycastHit hit;
+        playerAnimator.SetBool("isShooting", true);
+        Debug.Log(playerAnimator.GetBool("isShooting"));
+        
         if (
             Physics
                 .Raycast(playerCam.transform.position,
@@ -37,8 +50,12 @@ public class weaponManager : MonoBehaviour
         {
             if (hit.transform.tag == "Zombie")
             {
-                hit.transform.GetComponent<zombieController>().TakeDamage(20f);
+                hit.transform.GetComponent<zombieController>().TakeDamage(damage);
             }
         }
     }
 }
+
+
+
+ 

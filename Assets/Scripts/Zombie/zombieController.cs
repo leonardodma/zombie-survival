@@ -15,6 +15,8 @@ public class zombieController : MonoBehaviour
 
     public bool isDead = false;
 
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,7 @@ public class zombieController : MonoBehaviour
         Debug.Log("Zombie health: " + health);
         if (health <= 0f)
         {
+            gameManager.enemiesAlive--;
             isDead = true;
             animator.SetBool("isDead", true);
             //Destroy (gameObject);
