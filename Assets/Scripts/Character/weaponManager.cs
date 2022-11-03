@@ -31,7 +31,7 @@ public class weaponManager : MonoBehaviour
 
         //    playerAnimator.SetBool("isShooting", false);
         //}
-        //Debug.Log(playerAnimator.GetBool("isShooting"));
+        
     }
 
     private void Shoot()

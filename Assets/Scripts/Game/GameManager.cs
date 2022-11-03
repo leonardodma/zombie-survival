@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI roundNumber;
     public TextMeshProUGUI enemiesAliveText;
     public TextMeshProUGUI enemiesKilledText;
+    public TextMeshProUGUI enemiesKilledDisplay;
     public TextMeshProUGUI roundsSurvived;
 
 
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void EndGame()
@@ -68,5 +69,8 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         roundsSurvived.text = round.ToString();
         endScreen.SetActive(true);
+        enemiesAliveText.gameObject.SetActive(false);
+        enemiesKilledText.gameObject.SetActive(false);
+        roundNumber.gameObject.SetActive(false);
     }
 }

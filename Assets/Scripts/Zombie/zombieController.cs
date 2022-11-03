@@ -75,7 +75,7 @@ public class zombieController : MonoBehaviour
 
             gameManager.enemiesAliveText.text = "ZOMBIES ALIVE " + gameManager.enemiesAlive.ToString();
             gameManager.enemiesKilledText.text = "ZOMBIES KILLED " + gameManager.killed.ToString();
-
+            gameManager.enemiesKilledDisplay.text = gameManager.killed.ToString();
             isDead = true;
 
             rbZombie.isKinematic = true;
