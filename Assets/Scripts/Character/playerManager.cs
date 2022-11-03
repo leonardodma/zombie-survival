@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class playerManager : MonoBehaviour
 {
-    public float health = 100f;
+    public float health = 10000f;
     public healthBar healthBar;
 
     public GameManager gameManager;

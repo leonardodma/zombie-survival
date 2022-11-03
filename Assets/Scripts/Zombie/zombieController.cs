@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,10 +20,15 @@ public class zombieController : MonoBehaviour
 
     public GameManager gameManager;
 
+    public Rigidbody rbZombie;
+
+   
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        rbZombie = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -34,23 +40,7 @@ public class zombieController : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
         }
-        //else if (isDead && health<=0)
-        //{
-        //    gameManager.enemiesAlive--;
-        //    //animator.SetBool("isDying", true);
-        //    isDead = false;
-        //    //Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsTag("Dying"));
-        //    Debug.Log(animator.IsInTransition(0));
-        //    // destroy the game object if the animator has finished its animation
-        //    //if ( !animator.IsInTransition(0) && animator.GetCurrentAnimatorStateInfo(0).IsTag("Dying") && (animator.GetCurrentAnimatorStateInfo(0).length >
-        //    //   animator.GetCurrentAnimatorStateInfo(0).normalizedTime)) 
-        //    //{
-        //    //    Destroy(gameObject);
-        //    //}
-            
         
-
-        //}
 
 
 
@@ -70,7 +60,6 @@ public class zombieController : MonoBehaviour
         {
             Debug.Log("Player hit");
             player.GetComponent<playerManager>().TakeDamage(damage);
-
             animator.SetBool("isAttacking", true);
         }
     }
@@ -79,10 +68,19 @@ public class zombieController : MonoBehaviour
     {
         health -= amount;
         Debug.Log("Zombie health: " + health);
-        if (health <= 0f)
+        if (health <= 0f && !isDead)
         {
             gameManager.enemiesAlive--;
+            gameManager.killed++;
+
+            gameManager.enemiesAliveText.text = "ZOMBIES ALIVE " + gameManager.enemiesAlive.ToString();
+            gameManager.enemiesKilledText.text = "ZOMBIES KILLED " + gameManager.killed.ToString();
+
             isDead = true;
+
+            rbZombie.isKinematic = true;
+            rbZombie.detectCollisions = false;
+            GetComponent<NavMeshAgent>().enabled = false;
 
             animator.SetBool("isDying", true);
             StartCoroutine(CheckAnimationCompleted("Dying", () =>

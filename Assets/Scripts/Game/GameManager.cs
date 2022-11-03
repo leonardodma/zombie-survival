@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
 
     public int enemiesAlive = 0;
+    public int killed = 0;
     public int round = 0;
     public GameObject[] spawnPoints;
     public GameObject enemy;
@@ -17,7 +18,10 @@ public class GameManager : MonoBehaviour
     // TEXT
     //public Text roundText;
     public TextMeshProUGUI roundNumber;
+    public TextMeshProUGUI enemiesAliveText;
+    public TextMeshProUGUI enemiesKilledText;
     public TextMeshProUGUI roundsSurvived;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +53,7 @@ public class GameManager : MonoBehaviour
 
             enemiesAlive++;
         }
+        enemiesAliveText.text = "ZOMBIES ALIVE " + enemiesAlive.ToString();
     }
 
     public void Restart()
