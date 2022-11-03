@@ -26,4 +26,9 @@ public class playerManager : MonoBehaviour
     {
         healthBar.SetMaxHealth(health);
     }
+
+    public void Update()
+    {
+        
+    }
 }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,11 +29,30 @@ public class zombieController : MonoBehaviour
     void Update()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-
+        
         if (isDead == false)
         {
             agent.SetDestination(player.transform.position);
         }
+        //else if (isDead && health<=0)
+        //{
+        //    gameManager.enemiesAlive--;
+        //    //animator.SetBool("isDying", true);
+        //    isDead = false;
+        //    //Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsTag("Dying"));
+        //    Debug.Log(animator.IsInTransition(0));
+        //    // destroy the game object if the animator has finished its animation
+        //    //if ( !animator.IsInTransition(0) && animator.GetCurrentAnimatorStateInfo(0).IsTag("Dying") && (animator.GetCurrentAnimatorStateInfo(0).length >
+        //    //   animator.GetCurrentAnimatorStateInfo(0).normalizedTime)) 
+        //    //{
+        //    //    Destroy(gameObject);
+        //    //}
+            
+        
+
+        //}
+
+
 
         if (agent.velocity.magnitude > 0)
         {
@@ -45,7 +66,7 @@ public class zombieController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && health>0)
         {
             Debug.Log("Player hit");
             player.GetComponent<playerManager>().TakeDamage(damage);
@@ -62,8 +83,30 @@ public class zombieController : MonoBehaviour
         {
             gameManager.enemiesAlive--;
             isDead = true;
-            animator.SetBool("isDead", true);
-            //Destroy (gameObject);
+
+            animator.SetBool("isDying", true);
+            StartCoroutine(CheckAnimationCompleted("Dying", () =>
+            {
+                //animator.SetBool("isDying", false);
+                Destroy(gameObject);
+            }
+            ));
         }
+        
+    }
+
+    public IEnumerator CheckAnimationCompleted(string CurrentAnimTag, Action Oncomplete)
+    {
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsTag(CurrentAnimTag))
+            yield return null;
+
+        //Now, Wait until the current state is done playing
+        while ((animator.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
+            yield return null;
+        
+
+
+        if (Oncomplete != null)
+            Oncomplete();
     }
 }

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (enemiesAlive == 0)
         {
             round++;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void NewWave(int round)
     {
+        Debug.Log("Calling next wave: " + round);
         for (var x = 0; x<round; x++)
         {
             GameObject spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];

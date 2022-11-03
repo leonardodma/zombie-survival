@@ -36378,7 +36378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 7403825164991869066}
-  ViewSensitivity: 50
+  ViewSensitivity: 40
 --- !u!4 &7664332843548610536
 Transform:
   m_ObjectHideFlags: 0
