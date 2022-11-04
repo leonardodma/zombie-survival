@@ -20,7 +20,7 @@ public class zombieController : MonoBehaviour
 
     public GameManager gameManager;
 
-    public Rigidbody rbZombie;
+    private Rigidbody rbZombie;
 
     public float timer = 0f;
 
@@ -68,19 +68,21 @@ public class zombieController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" && health > 0)
-        {
-            Debug.Log("Player hit");
-            player.GetComponent<playerManager>().TakeDamage(damage);
-        }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    //if (collision.gameObject.tag == "Player" && health > 0)
+    //    //{
+    //    //    Debug.Log("Player hit");
+    //    //    player.GetComponent<playerManager>().TakeDamage(damage);
+    //    //}
 
-        // wait for 1 second before attacking again
-        //StartCoroutine(AttackDelay());
-        // Sound effect
-        zombieAudio.Play();
-    }
+    //    // wait for 1 second before attacking again
+    //    //StartCoroutine(AttackDelay());
+    //    // Sound effect
+    //    zombieAudio.Play();
+    //}
+
+    
 
     public void TakeDamage(float amount)
     {
