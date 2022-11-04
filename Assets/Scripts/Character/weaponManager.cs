@@ -14,13 +14,19 @@ public class weaponManager : MonoBehaviour
 
     public Animator playerAnimator;
 
+    private AudioSource gunAudio;
+
     // Start is called before the first frame update
     void Start()
     {
         // Get the DefaultInput asset
         defaultInput = new DefaultInput();
         defaultInput.Character.Shoot.performed += e => Shoot();
+        defaultInput.Character.Aim.performed += e => Aim();
+        defaultInput.Character.Aim.canceled += e => CancelAim();
         defaultInput.Enable();
+
+        gunAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,18 +34,17 @@ public class weaponManager : MonoBehaviour
     {
         //if (playerAnimator.GetBool("isShooting"))
         //{
-
         //    playerAnimator.SetBool("isShooting", false);
         //}
-        
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         RaycastHit hit;
-        //playerAnimator.SetBool("isShooting", true);
-        //Debug.Log(playerAnimator.GetBool("isShooting"));
 
+        playerAnimator.SetBool("isShooting", true);
+        Debug.Log("Shooting");
+        //Debug.Log(playerAnimator.GetBool("isShooting"));
         if (
             Physics
                 .Raycast(playerCam.transform.position,
@@ -48,15 +53,24 @@ public class weaponManager : MonoBehaviour
                 range)
         )
         {
-            zombieController zombieController = hit.transform.GetComponent<zombieController>();
-            if (zombieController != null )
+            zombieController zombieController =
+                hit.transform.GetComponent<zombieController>();
+            if (zombieController != null)
             {
-                zombieController.TakeDamage(damage);
+                zombieController.TakeDamage (damage);
             }
         }
+
+        gunAudio.Play();
+    }
+
+    public void Aim()
+    {
+        playerAnimator.SetBool("isAiming", true);
+    }
+
+    public void CancelAim()
+    {
+        playerAnimator.SetBool("isAiming", false);
     }
 }
-
-
-
- 

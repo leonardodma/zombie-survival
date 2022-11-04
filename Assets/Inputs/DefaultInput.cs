@@ -55,24 +55,6 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""db974e64-0511-4894-98bd-d4c8d4cf4340"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Prone"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""45fc3429-2b4e-4efc-b939-d4ee5c7840e7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""8fadfb84-864b-462e-b088-f2a581c6155b"",
@@ -85,6 +67,24 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
                     ""id"": ""176c9277-a914-4f63-bbee-c164af758a1c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""7dd52f3f-6a63-495e-b971-331f40a5792b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c53b84f-c980-4535-af68-7d87b8f2ccbd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -171,39 +171,6 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""74bf4d0d-e770-4c3f-8870-e7211e0a3ebf"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7951f9d9-5bee-45c1-932e-c16b28fb324b"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Prone"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""98ddcfc0-78f2-4d31-9961-cf06d49b3af2"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Prone"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""45913f6d-7144-4e15-af82-e29a8ab3083c"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
@@ -223,6 +190,28 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef1db460-715b-496d-815f-20469f9f90ad"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25306308-54d9-4be4-9a10-1adc0fdcb6e6"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -234,10 +223,10 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
         m_Character_View = m_Character.FindAction("View", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
-        m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
-        m_Character_Prone = m_Character.FindAction("Prone", throwIfNotFound: true);
         m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
         m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
+        m_Character_Aim = m_Character.FindAction("Aim", throwIfNotFound: true);
+        m_Character_Pause = m_Character.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -300,10 +289,10 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_View;
     private readonly InputAction m_Character_Movement;
     private readonly InputAction m_Character_Jump;
-    private readonly InputAction m_Character_Crouch;
-    private readonly InputAction m_Character_Prone;
     private readonly InputAction m_Character_Sprint;
     private readonly InputAction m_Character_Shoot;
+    private readonly InputAction m_Character_Aim;
+    private readonly InputAction m_Character_Pause;
     public struct CharacterActions
     {
         private @DefaultInput m_Wrapper;
@@ -311,10 +300,10 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
         public InputAction @View => m_Wrapper.m_Character_View;
         public InputAction @Movement => m_Wrapper.m_Character_Movement;
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
-        public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
-        public InputAction @Prone => m_Wrapper.m_Character_Prone;
         public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
         public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
+        public InputAction @Aim => m_Wrapper.m_Character_Aim;
+        public InputAction @Pause => m_Wrapper.m_Character_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -333,18 +322,18 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
-                @Crouch.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
-                @Crouch.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
-                @Crouch.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnCrouch;
-                @Prone.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnProne;
-                @Prone.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnProne;
-                @Prone.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnProne;
                 @Sprint.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                 @Shoot.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShoot;
+                @Aim.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
+                @Pause.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -358,18 +347,18 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Crouch.started += instance.OnCrouch;
-                @Crouch.performed += instance.OnCrouch;
-                @Crouch.canceled += instance.OnCrouch;
-                @Prone.started += instance.OnProne;
-                @Prone.performed += instance.OnProne;
-                @Prone.canceled += instance.OnProne;
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -379,9 +368,9 @@ public partial class @DefaultInput : IInputActionCollection2, IDisposable
         void OnView(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
-        void OnProne(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

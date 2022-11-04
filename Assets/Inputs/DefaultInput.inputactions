@@ -33,24 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "db974e64-0511-4894-98bd-d4c8d4cf4340",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Prone",
-                    "type": "PassThrough",
-                    "id": "45fc3429-2b4e-4efc-b939-d4ee5c7840e7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Sprint",
                     "type": "Button",
                     "id": "8fadfb84-864b-462e-b088-f2a581c6155b",
@@ -63,6 +45,24 @@
                     "name": "Shoot",
                     "type": "Button",
                     "id": "176c9277-a914-4f63-bbee-c164af758a1c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "7dd52f3f-6a63-495e-b971-331f40a5792b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "7c53b84f-c980-4535-af68-7d87b8f2ccbd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -149,39 +149,6 @@
                 },
                 {
                     "name": "",
-                    "id": "74bf4d0d-e770-4c3f-8870-e7211e0a3ebf",
-                    "path": "<Keyboard>/c",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7951f9d9-5bee-45c1-932e-c16b28fb324b",
-                    "path": "<Keyboard>/x",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Prone",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "98ddcfc0-78f2-4d31-9961-cf06d49b3af2",
-                    "path": "<Keyboard>/c",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Prone",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "45913f6d-7144-4e15-af82-e29a8ab3083c",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
@@ -199,6 +166,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef1db460-715b-496d-815f-20469f9f90ad",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25306308-54d9-4be4-9a10-1adc0fdcb6e6",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

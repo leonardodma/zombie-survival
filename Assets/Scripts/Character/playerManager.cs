@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class playerManager : MonoBehaviour
 {
     public float health = 10000f;
+
     public healthBar healthBar;
 
     public GameManager gameManager;
@@ -14,7 +15,7 @@ public class playerManager : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        healthBar.SetHealth(health);
+        healthBar.SetHealth (health);
         if (health <= 0f)
         {
             Debug.Log("Player is dead");
@@ -22,13 +23,21 @@ public class playerManager : MonoBehaviour
         }
     }
 
+    public void Heal(float amount)
+    {
+        health += amount;
+        if (health > 100f)
+        {
+            health = 100f;
+        }
+    }
+
     public void Start()
     {
-        healthBar.SetMaxHealth(health);
+        healthBar.SetMaxHealth (health);
     }
 
     public void Update()
     {
-        
     }
 }

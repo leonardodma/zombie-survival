@@ -13,9 +13,11 @@ public class viewController : MonoBehaviour
     public Transform playerBody;
 
     [Header("Settings")]
-    public float ViewSensitivity = 50f;
+    public float ViewSensitivity = 5f;
 
     private float xRotation = 0f;
+
+    public Animator playerAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -50,5 +52,10 @@ public class viewController : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+    }
+
+    private void EndShoot()
+    {
+        playerAnimator.SetBool("isShooting", false);
     }
 }
