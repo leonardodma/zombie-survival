@@ -88,7 +88,7 @@ public class zombieController : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        Debug.Log("Zombie health: " + health);
+        //Debug.Log("Zombie health: " + health);
         if (health <= 0f && !isDead)
         {
             gameManager.enemiesAlive--;

@@ -18,7 +18,7 @@ public class playerManager : MonoBehaviour
         healthBar.SetHealth (health);
         if (health <= 0f)
         {
-            Debug.Log("Player is dead");
+            //Debug.Log("Player is dead");
             gameManager.EndGame();
         }
     }

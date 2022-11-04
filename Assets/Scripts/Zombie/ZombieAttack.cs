@@ -23,7 +23,7 @@ public class ZombieAttack : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("Player hit");
+        //Debug.Log("Player hit");
         player.GetComponent<playerManager>().TakeDamage(damage);
     }
 }

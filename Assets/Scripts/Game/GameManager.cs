@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void NewWave(int round)
     {
-        Debug.Log("Calling next wave: " + round);
+        //Debug.Log("Calling next wave: " + round);
         for (var x = 0; x < round; x++)
         {
             GameObject spawnPoint =
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void GenerateHeart()
     {
-        Debug.Log("Generating Heart ... ");
+        //Debug.Log("Generating Heart ... ");
         
         GameObject lifeSpawnPoint =
             lifeSpawnPoints[Random.Range(0, lifeSpawnPoints.Length)];
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        Debug.Log("Pause");
+        //Debug.Log("Pause");
         if (isPaused)
         {
             Time.timeScale = 1;

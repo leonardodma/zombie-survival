@@ -43,7 +43,7 @@ public class weaponManager : MonoBehaviour
         RaycastHit hit;
 
         playerAnimator.SetBool("isShooting", true);
-        Debug.Log("Shooting");
+        //Debug.Log("Shooting");
         //Debug.Log(playerAnimator.GetBool("isShooting"));
         if (
             Physics
