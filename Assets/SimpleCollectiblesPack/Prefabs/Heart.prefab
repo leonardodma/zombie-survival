@@ -28,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781561378815422}
-  m_LocalRotation: {x: -0.10560158, y: 0.73544663, z: 0.091068015, w: 0.6630786}
-  m_LocalPosition: {x: -0.08, y: -0.86, z: -0.69000006}
-  m_LocalScale: {x: 1.6448841, y: 1.6448833, z: 1.6448842}
+  m_LocalRotation: {x: -0.10559887, y: 0.7354469, z: 0.091068506, w: 0.6630786}
+  m_LocalPosition: {x: -0.08, y: 0, z: -0.69000006}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,9 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1315172d7ad53634e952f7d8f3c02048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectibleType: 0
   rotate: 1
-  rotationSpeed: 10
+  rotationSpeed: 20
   collectSound: {fileID: 0}
   collectEffect: {fileID: 1702657300312902, guid: a45c51da10cf1a84abc6a99c06951e3f,
     type: 3}

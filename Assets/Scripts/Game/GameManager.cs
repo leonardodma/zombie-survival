@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] spawnPoints;
 
+    public GameObject[] lifeSpawnPoints;
+
     public GameObject enemy;
+    public GameObject heart;
 
     public GameObject endScreen;
 
@@ -51,7 +54,12 @@ public class GameManager : MonoBehaviour
             round++;
             roundNumber.text = "Round " + round.ToString();
             NewWave (round);
+            if (round % 2 == 0f)
+            {
+                GenerateHeart();
+            }
         }
+
     }
 
     public void NewWave(int round)
@@ -71,6 +79,20 @@ public class GameManager : MonoBehaviour
             enemiesAlive++;
         }
         enemiesAliveText.text = "ZOMBIES ALIVE " + enemiesAlive.ToString();
+    }
+
+    public void GenerateHeart()
+    {
+        Debug.Log("Generating Heart ... ");
+        
+        GameObject lifeSpawnPoint =
+            lifeSpawnPoints[Random.Range(0, lifeSpawnPoints.Length)];
+        GameObject heartCreated =
+            Instantiate(heart,
+            lifeSpawnPoint.transform.position,
+            Quaternion.identity);
+        //heartCreated.GetComponent<zombieController>().gameManager =
+        //    GetComponent<GameManager>();
     }
 
     public void Restart()

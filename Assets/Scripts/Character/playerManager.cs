@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class playerManager : MonoBehaviour
 {
-    public float health = 10000f;
+    public float health = 100f;
 
     public healthBar healthBar;
 
@@ -26,6 +26,8 @@ public class playerManager : MonoBehaviour
     public void Heal(float amount)
     {
         health += amount;
+        healthBar.SetHealth(health);
+        Debug.Log("milagre divino");
         if (health > 100f)
         {
             health = 100f;

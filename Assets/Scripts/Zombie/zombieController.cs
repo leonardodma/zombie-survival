@@ -12,7 +12,7 @@ public class zombieController : MonoBehaviour
 
     public Animator animator;
 
-    public float damage = 20f;
+    public float damage = 10f;
 
     public float health = 100f;
 
@@ -38,6 +38,7 @@ public class zombieController : MonoBehaviour
     void Update()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = 2.5f;
 
         timer += Time.deltaTime;
 
@@ -59,11 +60,11 @@ public class zombieController : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
             animator.SetBool("isAttacking", true);
-            agent.isStopped = true;
+            //agent.isStopped = true;
         }
         else
         {
-            agent.isStopped = false;
+            //agent.isStopped = false;
             animator.SetBool("isAttacking", false);
         }
     }
