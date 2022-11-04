@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,18 +9,40 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Slider volumeListener;
+    public TextMeshProUGUI roundNumber;
+    public TextMeshProUGUI killedNumber;
+
+   
 
     void Start()
     {
         if (!PlayerPrefs.HasKey("volume"))
         {
-            PlayerPrefs.SetFloat("volume", 1f);
+
+
             Load();
         }
         else
         {
             Load();
         }
+
+        //PlayerPrefs.SetInt("roundHighScore", 0);
+        //PlayerPrefs.SetInt("killedHighScore", 0);
+    }
+
+    public void LoadHighScore()
+    {
+        if (PlayerPrefs.HasKey("roundHighScore"))
+        {
+            roundNumber.text = PlayerPrefs.GetInt("roundHighScore").ToString();
+        }
+
+        if (PlayerPrefs.HasKey("killedHighScore"))
+        {
+            killedNumber.text = PlayerPrefs.GetInt("killedHighScore").ToString();
+        }
+
     }
 
     public void PlayGame()

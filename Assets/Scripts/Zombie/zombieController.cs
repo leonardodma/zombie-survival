@@ -101,6 +101,7 @@ public class zombieController : MonoBehaviour
             gameManager.enemiesKilledDisplay.text =
                 gameManager.killed.ToString();
             isDead = true;
+            
 
             rbZombie.isKinematic = true;
             rbZombie.detectCollisions = false;

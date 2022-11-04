@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
         enemiesAliveText.gameObject.SetActive(false);
         enemiesKilledText.gameObject.SetActive(false);
         roundNumber.gameObject.SetActive(false);
+        PlayerPrefs.SetInt("roundHighScore", round);
+        PlayerPrefs.SetInt("killedHighScore", killed);
     }
 
     public void Pause()
@@ -125,5 +127,10 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             isPaused = true;
         }
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
